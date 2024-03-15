@@ -23,10 +23,16 @@ import Section from './components/Section'
 function App() {
 
   return (
-    <Section
-    title = "general info"
-    />
-
+    <>
+    <button>edit</button>
+      <Section
+      title = "general info"
+      lines = {[
+        { content: "name", id: "name" },
+        { content: "email", id: "email" },
+        { content: "phone", id: "phone" }]}
+      />
+    </>
   )
 }
 
