@@ -10,7 +10,7 @@ import Section from './components/Section'
 // 3. Be sure to include an edit and submit button for each section or for the whole CV.
 //  The submit button should submit your form and display the value of your input fields in HTML elements.
 //   The edit button should add back (display) the input fields, with the previously displayed information as
-//    values. In those input fields, you should be able to edit and resubmit the content. 
+//    values. In those input fields, you should be able to edit and resubmit the label. 
 //    You’re going to make heavy use of state and props, so make sure you understood those concepts.
 // 4. Create a components directory under your src directory and add your components.
 // 5. Include a styles directory under your src directory for your CSS files. You’ll need to import these in the component files to use them.
@@ -18,20 +18,22 @@ import Section from './components/Section'
 //  At this point of the curriculum, it doesn’t matter which platform you choose as long as your project is live on the internet!
 
 
-
-
+//next step - add onSubmit to add values to the lines
 function App() {
+  const [editMode, setEditMode] = useState(false)
 
   return (
     <>
-    <button>edit</button>
-      <Section
-      title = "general info"
-      lines = {[
-        { content: "name", id: "name" },
-        { content: "email", id: "email" },
-        { content: "phone", id: "phone" }]}
-      />
+    {!editMode && <button onClick = {()=>{setEditMode(true)}}>edit</button>}
+    <Section
+    title = "general info"
+    editMode = {editMode}
+    lines = {[
+      { label: "name", id: "name" },
+      { label: "email", id: "email" },
+      { label: "phone", id: "phone" }]}
+    />
+    {editMode && <button onClick = {()=>{setEditMode(false)}}>Save Changes</button>}
     </>
   )
 }

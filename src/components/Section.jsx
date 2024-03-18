@@ -1,7 +1,9 @@
 export default function Section(props){
 
     const lines = props.lines.map(line =>
-        <p key={line.id}>{line.content}</p>
+        props.editMode ?
+        <p key={line.id}>{line.label}<input type = "text" value = {line.content}></input></p>:
+        <p key={line.id}>{line.label}{line.content}</p>
       );
       
     return (
