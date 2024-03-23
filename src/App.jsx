@@ -19,22 +19,28 @@ import Section from './components/Section'
 
 
 //next step - add onSubmit to add values to the lines
+
+//props are changed outside the component, state inside, the input values probably cannot be changed using props :()
 function App() {
   const [editMode, setEditMode] = useState(false)
 
+  function handleEditChange(e){
+    setEditMode(!editMode)
+  }
+
   return (
-    <>
-    {!editMode && <button onClick = {()=>{setEditMode(true)}}>edit</button>}
+    <form>
+    {!editMode && <button onClick = {()=>{handleEditChange()}}>edit</button>}
     <Section
     title = "general info"
     editMode = {editMode}
     lines = {[
-      { label: "name", id: "name" },
-      { label: "email", id: "email" },
-      { label: "phone", id: "phone" }]}
+      { label: "name", id: "name"},
+      { label: "email", id: "email"},
+      { label: "phone", id: "phone"}]}
     />
-    {editMode && <button onClick = {()=>{setEditMode(false)}}>Save Changes</button>}
-    </>
+    {editMode && <button onClick = {()=>{handleEditChange()}}>Save Changes</button>}
+    </form>
   )
 }
 
